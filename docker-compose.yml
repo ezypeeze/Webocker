@@ -1,0 +1,12 @@
+version: '2'
+services:
+    php56:
+        container_name: webocker-php56
+        image: php56
+        build: ./php56
+        volumes:
+            - ~/webocker/nginx/sites-enabled:/etc/nginx/sites-enabled
+            - ~/webocker/logs/nginx:/var/log/nginx
+            - ~/webocker/www:/var/www
+        ports:
+            - "8888:80" ## Port forwarding
