@@ -5,8 +5,24 @@ services:
         image: php56
         build: ./php56
         volumes:
-            - ~/webocker/nginx/sites-enabled:/etc/nginx/sites-enabled
-            - ~/webocker/logs/nginx:/var/log/nginx
-            - ~/webocker/www:/var/www
+            - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+            - ./logs/nginx:/var/log/nginx
+            - ./www:/var/www
+            - ./scripts:/scripts
         ports:
-            - "8888:80" ## Port forwarding
+            - "8888:80"
+        links:
+            - postgres
+
+    postgres:
+        container_name: webocker-postgres
+        image: postgres
+        build: ./postgres
+        volumes:
+            - ~/webocker/data/postgres:/var/lib/postgres
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: webocker
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
