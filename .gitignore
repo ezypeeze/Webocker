@@ -1,4 +1,1 @@
-nginx
-logs
-www
-scripts
+volumes
