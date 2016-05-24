@@ -7,6 +7,9 @@ echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
 locale-gen en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# May the clear be with you
+echo 'printf "\033c"' >> /usr/bin
+
 # Basic packages
 apt-get install -y sudo software-properties-common nano curl \
     build-essential dos2unix gcc git git-flow libmcrypt4 libpcre3-dev apt-utils \
