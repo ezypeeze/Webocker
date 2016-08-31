@@ -50,7 +50,3 @@ apt-get -y install nginx
 mkdir /var/www
 chown -R www-data:www-data /var/www
 chmod 755 /var/www
-
-# Services Reload
-service php5-fpm restart
-service nginx restart
