@@ -8,28 +8,12 @@ apt-get install -y sudo software-properties-common nano curl \
 
 # PPA Repositories
 apt-add-repository ppa:phalcon/stable  -y
-apt-get update  -y
-
-# Install PHP
-apt-get install -y php5-cli php5-dev \
-    php5-mysql php5-pgsql \
-    php5-apcu php5-json php5-curl php5-gd \
-    php5-gmp php5-imap php5-mcrypt php5-xdebug \
-    php5-memcached php5-redis php5-fpm
-
-# Install Composer
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
-
-# XDebug Augmentations
-echo "xdebug.var_display_max_depth = -1" >> /etc/php5/mods-available/xdebug.ini
-echo "xdebug.var_display_max_children = -1" >> /etc/php5/mods-available/xdebug.ini
-echo "xdebug.var_display_max_data = -1" >> /etc/php5/mods-available/xdebug.ini
-echo "xdebug.max_nesting_level = 500" >> /etc/php5/mods-available/xdebug.ini
+apt-get update -y
 
 # PHP Frameworks
 cd /
 git clone --depth=1 git://github.com/phalcon/cphalcon.git
 cd cphalcon/build
 ./install
-echo "extension=phalcon.so" >> /usr/local/etc/php/conf.d/phalcon.ini
+
+echo "extension=phalcon.so" >> /usr/local/etc/php/conf.d/30phalcon.ini
