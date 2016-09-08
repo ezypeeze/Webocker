@@ -10,6 +10,10 @@ apt-get install -y sudo software-properties-common nano curl \
 apt-add-repository ppa:phalcon/stable  -y
 apt-get update -y
 
+# Install Composer
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+
 # PHP Frameworks
 cd /
 git clone --depth=1 git://github.com/phalcon/cphalcon.git
