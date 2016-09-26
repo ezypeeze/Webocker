@@ -1,4 +1,4 @@
-FROM php:5.6-fpm
+FROM php:7-fpm
 MAINTAINER Pedro Pereira <pedromdspereira.93@gmail.com>
 
 # Update Package List
@@ -19,11 +19,11 @@ RUN docker-php-ext-install exif mbstring pdo_mysql opcache pcntl zip pdo \
     pdo_pgsql pgsql intl
 
 # Redis Extension
-RUN git clone -b master https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && \
+RUN git clone -b php7 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && \
     docker-php-ext-install redis
 
 # Memcached Extension
-RUN git clone -b master https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached && \
+RUN git clone -b php7 https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached && \
     docker-php-ext-install memcached
 
 # Phalcon Extension
