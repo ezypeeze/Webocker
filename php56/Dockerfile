@@ -14,6 +14,8 @@ RUN apt-get install --fix-missing -y sudo software-properties-common nano curl \
 RUN curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer && \
     chmod +x /usr/local/bin/composer
 
+ENV PATH ~/.composer/vendor/bin:$PATH
+
 # Basic Extensions
 RUN docker-php-ext-install exif mbstring pdo_mysql opcache pcntl zip pdo \
     pdo_pgsql pgsql intl
@@ -32,11 +34,10 @@ RUN git clone --depth=1 git://github.com/phalcon/cphalcon.git /phalcon && \
     ./install && \
     echo "extension=phalcon.so" >> /usr/local/etc/php/conf.d/30phalcon.ini
 
-# Laravel Frameworks
-RUN composer global require "laravel/installer" && \
-    composer global require "laravel/lumen-installer"
+# Phalcon Devtools
+RUN git clone https://github.com/phalcon/phalcon-devtools.git && \
+        ln -s /phalcon-devtools/phalcon.php /usr/bin/phalcon
+        chmod ugo+x /usr/bin/phalcon
 
-
-ENV PATH ~/.composer/vendor/bin:$PATH
 
 WORKDIR /
